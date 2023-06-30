@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frontend Mentor | Notifications page</title>
+  <link rel="stylesheet" href="/build.css">
+</head>
+<body class="bg-grayish_blue-100 grid min-h-screen place-content-center">
+
+  <main class="container rounded-md bg-white p-10 mx-auto w-3/4 shadow-lg grid gap-4"> 
+    <header class="flex justify-between items-center my-3">
+      <h1 class="font-bold text-grayish_blue-600 text-2xl">Notifications <span class="bg-blue text-white font-extrabold rounded-md px-3 count"></span></h1>
+      <button class="text-grayish_blue-500 hover:font-extrabold hover:text-blue" onclick="readAll()" class="readAll">Mark all as read</button>
+    </header>
+  
+    <div class="group p-5 rounded-md data-[read=true]:bg-grayish_blue-300" data-read="true">
+      <div class="flex gap-3 items-center">
+        <img src="/assets/images/avatar-mark-webber.webp" class="aspect-square w-[4rem]" alt="mark-webber">
+        <p class="text-grayish_blue-500"><a href="" class="text-grayish_blue-600 font-bold">Mark Webber</a> reacted to your recent post <span class="text-grayish_blue-600">My first tournament today!</span>
+          <span class="text-grayish_blue-400 block">1m ago</span>
+        </p>
+      </div>   
+    </div>
+
+    <div class="group p-5 rounded-md data-[read=true]:bg-grayish_blue-300" data-read="true">
+      <div class="flex gap-3 items-center">
+        <img src="/assets/images/avatar-angela-gray.webp" class="aspect-square w-[4rem]" alt="angela-gray">
+        <p class="text-grayish_blue-500"><a href="" class="text-grayish_blue-600 font-bold">Angela Gray</a> followed you
+          <span class="text-grayish_blue-400 block">5m ago</span>
+        </p>
+      </div>   
+    </div>
+
+    <div class="group p-5 rounded-md data-[read=true]:bg-grayish_blue-300" data-read="true">
+      <div class="flex gap-3 items-center">
+        <img src="/assets/images/avatar-jacob-thompson.webp" class="aspect-square w-[4rem]" alt="angela-gray">
+        <p class="text-grayish_blue-500"><a href="" class="text-grayish_blue-600 font-bold">  Jacob Thompson </a> has joined your group 
+          <a href="" class="text-blue font-extrabold">
+            Chess Club
+          </a>
+          <span class="text-grayish_blue-400 block">1 day ago</span>
+        </p>
+      </div>   
+    </div>
+  
+    <div class="group p-5 rounded-md data-[read=true]:bg-grayish_blue-300">
+      <div class="flex gap-3 items-start">
+        <img src="/assets/images/avatar-rizky-hasanuddin.webp" class="aspect-square w-[4rem]" alt="">
+        
+        <div class="text-grayish_blue-500 ">
+          <a href="" class="text-grayish_blue-600 font-bold">Rizky Hasanuddin</a> sent you a private message
+          <span class="block">5 days ago</span>
+
+          <div class="rounded-md border border-grayish_blue-400 p-5 block mt-4 ">
+            <p class="text-grayish_blue-500">
+              Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and 
+              I'm already having lots of fun and improving my game.
+            </p>
+          </div>
+
+        </div>
+      </div>
+      
+    </div>
+    
+    <div class="group p-5 rounded-md data-[read=true]:bg-grayish_blue-300">
+      <div class="flex items-center gap-3">
+        <img src="/assets/images/avatar-kimberly-smith.webp" class="aspect-square w-[4rem]" alt="">
+        <p class="text-grayish_blue-500">
+          <a href="" class="text-grayish_blue-600 font-bold">Kimberly Smith</a> commented on your picture
+          <span class="block ">1 week ago</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="group p-5 rounded-md data-[read=true]:bg-grayish_blue-300">
+      <div class="flex items-center gap-3">
+        <img src="/assets/images/avatar-nathan-peterson.webp" class="aspect-square w-[4rem]" alt="">
+        <p class="text-grayish_blue-500">
+          <a href="" class="text-grayish_blue-600 font-bold">Nathan Peterson</a> reacted to your recent post <span class="text-grayish_blue-600 font-medium">5 end-game strategies to increase your win rate</span>
+          <span class="block ">2 week ago</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="group p-5 rounded-md data-[read=true]:bg-grayish_blue-300">
+      <div class="flex gap-3 items-center">
+        <img src="/assets/images/avatar-jacob-thompson.webp" class="aspect-square w-[4rem]" alt="angela-gray">
+        <p class="text-grayish_blue-500"><a href="" class="text-grayish_blue-600 font-bold">  Anna Kim  </a> left the group
+          <a href="" class="text-blue font-extrabold">
+            Chess Club
+          </a>
+          <span class="text-grayish_blue-400 block">2 weeks ago</span>
+        </p>
+      </div>   
+    </div>
+    
+  </main>
+
+  <script>
+    const el = document.querySelectorAll('.group')
+    const readAllBtn = document.querySelector('.readAll')
+    const readCount = document.querySelectorAll("[data-read='true']")
+    const countEl = document.querySelector('.count')
+    console.log(readCount.length)
+
+    countEl.innerHTML = readCount.length
+
+    el.forEach(n => n.addEventListener("click", ()=> {
+      n.setAttribute('data-read', 'false')
+      const readCount = document.querySelectorAll("[data-read='true']")
+      countEl.innerHTML = readCount.length
+    }))
+    
+    function readAll(){
+      console.log("REACHED")
+      el.forEach(notification => {
+        notification.setAttribute('data-read', 'false')
+        const readCount = document.querySelectorAll("[data-read='true']")
+        countEl.innerHTML = readCount.length
+      })
+    }
+  </script>
+  
+</body>
+</html>
